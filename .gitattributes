@@ -1,0 +1,18 @@
+# ExifTool 导入：换行符与二进制处理策略
+#
+# 目标：使本仓库 src/ 中的文件内容与上游 GitHub 仓库逐字节一致。
+# - 上游多数文本文件以 LF 存入 Git；Windows 上 core.autocrlf=true 会在
+#   检出时变为 CRLF，这里显式声明 eol=lf，保证入库内容与上游一致。
+# - text=auto 让 Git 自动识别二进制文件（含 NUL 字节者），不做换行转换。
+# - 上游以 CRLF 形式提交的少量测试样本必须逐字节保留，单独声明 -text。
+
+* text=auto eol=lf
+
+# 上游以 CRLF 提交的测试样本（保持原始换行符，禁止转换）
+src/t/images/Geotag.log -text
+src/t/images/Geotag3.log -text
+src/t/images/Geotag_DJI_2020-12-02_\[07-50-31\].csv -text
+src/t/images/LNK.url -text
+src/t/images/Text2.txt -text
+src/t/images/VCard.ics -text
+src/t/images/VCard.vcf -text
